@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Microsoft-kwadrantkleuren met lichte gradient -->
+    <linearGradient id="msRed" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F25022"/>
+      <stop offset="100%" stop-color="#C13A17"/>
+    </linearGradient>
+    <linearGradient id="msGreen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7FBA00"/>
+      <stop offset="100%" stop-color="#5C8A00"/>
+    </linearGradient>
+    <linearGradient id="msBlue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#00A4EF"/>
+      <stop offset="100%" stop-color="#0078B8"/>
+    </linearGradient>
+    <linearGradient id="msYellow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFB900"/>
+      <stop offset="100%" stop-color="#D18F00"/>
+    </linearGradient>
+
+    <!-- Raket-lichaam -->
+    <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="55%" stop-color="#E8EEF4"/>
+      <stop offset="100%" stop-color="#B9C5D2"/>
+    </linearGradient>
+
+    <!-- Vlam -->
+    <linearGradient id="flame" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFF7CC"/>
+      <stop offset="40%" stop-color="#FFB900"/>
+      <stop offset="100%" stop-color="#F25022"/>
+    </linearGradient>
+
+    <!-- Rook -->
+    <radialGradient id="smoke" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.98"/>
+      <stop offset="100%" stop-color="#D4DEE8" stop-opacity="0.85"/>
+    </radialGradient>
+
+    <!-- Gloed rond raket -->
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Clip voor afgeronde hoeken -->
+    <clipPath id="round">
+      <rect x="0" y="0" width="512" height="512" rx="96" ry="96"/>
+    </clipPath>
+
+    <!-- Clip om raket binnen kwadranten te houden -->
+    <clipPath id="raketMask">
+      <rect x="0" y="0" width="512" height="512" rx="96" ry="96"/>
+    </clipPath>
+  </defs>
+
+  <!-- Buitenste afgeronde vierkant -->
+  <g clip-path="url(#round)">
+    <!-- Microsoft-kwadranten -->
+    <rect x="0"   y="0"   width="256" height="256" fill="url(#msRed)"/>
+    <rect x="256" y="0"   width="256" height="256" fill="url(#msGreen)"/>
+    <rect x="0"   y="256" width="256" height="256" fill="url(#msBlue)"/>
+    <rect x="256" y="256" width="256" height="256" fill="url(#msYellow)"/>
+
+    <!-- Witte scheidingslijnen tussen kwadranten -->
+    <rect x="248" y="0"   width="16" height="512" fill="#FFFFFF" opacity="0.95"/>
+    <rect x="0"   y="248" width="512" height="16" fill="#FFFFFF" opacity="0.95"/>
+
+    <!-- Zachte witte gloed achter de raket -->
+    <circle cx="256" cy="240" r="180" fill="url(#glow)"/>
+
+    <!-- Rookpluimpjes onderaan (uit de motor) -->
+    <g opacity="0.95">
+      <circle cx="196" cy="418" r="30" fill="url(#smoke)"/>
+      <circle cx="232" cy="438" r="38" fill="url(#smoke)"/>
+      <circle cx="280" cy="440" r="40" fill="url(#smoke)"/>
+      <circle cx="320" cy="420" r="32" fill="url(#smoke)"/>
+      <circle cx="256" cy="462" r="34" fill="url(#smoke)"/>
+      <circle cx="216" cy="462" r="24" fill="url(#smoke)"/>
+      <circle cx="300" cy="464" r="26" fill="url(#smoke)"/>
+    </g>
+
+    <!-- Vlam onder de raket -->
+    <path d="M 240 372
+             Q 256 430 256 460
+             Q 256 430 272 372 Z"
+          fill="url(#flame)"/>
+
+    <!-- Raketlichaam -->
+    <path d="M 256 96
+             C 226 148, 216 200, 216 250
+             L 216 372
+             Q 256 390, 296 372
+             L 296 250
+             C 296 200, 286 148, 256 96 Z"
+          fill="url(#body)" stroke="#1F2A37" stroke-width="5"/>
+
+    <!-- Rode neus-cap -->
+    <path d="M 256 96
+             C 240 132, 228 168, 224 196
+             L 288 196
+             C 284 168, 272 132, 256 96 Z"
+          fill="url(#msRed)" stroke="#1F2A37" stroke-width="5"/>
+
+    <!-- Blauwe vinnen -->
+    <path d="M 216 300 L 178 388 L 216 372 Z"
+          fill="url(#msBlue)" stroke="#1F2A37" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M 296 300 L 334 388 L 296 372 Z"
+          fill="url(#msBlue)" stroke="#1F2A37" stroke-width="5" stroke-linejoin="round"/>
+
+    <!-- Raampje (blauw met astronauthelm) -->
+    <circle cx="256" cy="252" r="40" fill="#1F2A37"/>
+    <circle cx="256" cy="252" r="34" fill="url(#msBlue)" stroke="#FFFFFF" stroke-width="4"/>
+    <!-- Astronaut helm -->
+    <circle cx="256" cy="246" r="15" fill="#FFFFFF" stroke="#1F2A37" stroke-width="3"/>
+    <!-- Vizier -->
+    <path d="M 244 242 Q 256 252 268 242 L 268 248 Q 256 258 244 248 Z" fill="#0078B8"/>
+    <!-- Reflectie -->
+    <path d="M 234 232 Q 242 224 252 228" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.85"/>
+
+    <!-- Motor-onderzijde -->
+    <rect x="224" y="370" width="64" height="16" rx="4" fill="#1F2A37"/>
+    <rect x="238" y="386" width="36" height="12" rx="3" fill="#1F2A37"/>
+
+    <!-- Detail-lijnen op raket -->
+    <line x1="228" y1="210" x2="284" y2="210" stroke="#8A99A8" stroke-width="2.5" opacity="0.7"/>
+    <line x1="224" y1="320" x2="288" y2="320" stroke="#8A99A8" stroke-width="2.5" opacity="0.7"/>
+  </g>
+</svg>
