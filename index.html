@@ -3,7 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PWA Generator v5 — Multilingual</title>
+<title>PWA Generator v5</title>
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#0ea5e9">
+<link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png">
+<link rel="apple-touch-icon" href="./icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="PWA Generator v5">
 <style>
   * { box-sizing: border-box; }
   body {
@@ -326,9 +334,7 @@
       <div class="file-buttons" id="fileButtons"></div>
     </div>
 
-    <div class="checklist" id="checklistBox">
-      <!-- gevuld door JS per taal -->
-    </div>
+    <div class="checklist" id="checklistBox"></div>
   </div>
 </div>
 
@@ -802,7 +808,7 @@ const I18N = {
 };
 
 /* =====================================================================
-   Content packs voor GEGENEREERDE bestanden (privacy, guide, readme, UI-flow)
+   Content packs voor GEGENEREERDE bestanden
    ===================================================================== */
 const CONTENT = {
   nl: {
@@ -1005,204 +1011,94 @@ const CONTENT = {
   }
 };
 
-/* Voor de overige talen gebruiken we een generieke fallback naar EN,
-   tenzij hieronder overschreven. Dit houdt de code compakt. */
 CONTENT.zh = Object.assign({}, CONTENT.en, {
-  privacyH1: "隐私政策",
-  updated: "最后更新：",
-  backToApp: "← 返回应用",
+  privacyH1: "隐私政策", updated: "最后更新：", backToApp: "← 返回应用",
   guideH1: (n) => `📖 用户指南 — ${n}`,
-  guideSec1: "1. 什么是 PWA？",
-  guideSec2: "2. 在您的设备上安装",
-  guideSec3: "3. 离线使用",
-  guideSec4: "4. 更新",
-  guideSec5: "5. 卸载",
-  guideSec6: "6. 故障排除",
-  guideSec7: "7. 隐私",
-  readmeTitle: (n) => n,
+  guideSec1: "1. 什么是 PWA？", guideSec2: "2. 在您的设备上安装", guideSec3: "3. 离线使用",
+  guideSec4: "4. 更新", guideSec5: "5. 卸载", guideSec6: "6. 故障排除", guideSec7: "7. 隐私",
   readmeIntro: "渐进式 Web 应用（PWA）—— 可离线使用，并可安装到手机、平板或电脑。",
-  readmeFiles: "文件",
-  readmeTableHead: "| 文件 | 用途 |",
-  readmeTableSep: "|---|---|",
-  readmeInstall: "安装为应用",
-  readmeOffline: "离线使用",
-  readmePrivacy: "隐私",
+  readmeFiles: "文件", readmeTableHead: "| 文件 | 用途 |", readmeTableSep: "|---|---|",
+  readmeInstall: "安装为应用", readmeOffline: "离线使用", readmePrivacy: "隐私",
   fileGuideName: "user-guide"
 });
 CONTENT.ja = Object.assign({}, CONTENT.en, {
-  privacyH1: "プライバシーポリシー",
-  updated: "最終更新：",
-  backToApp: "← アプリに戻る",
+  privacyH1: "プライバシーポリシー", updated: "最終更新：", backToApp: "← アプリに戻る",
   guideH1: (n) => `📖 ユーザーガイド — ${n}`,
-  guideSec1: "1. PWA とは？",
-  guideSec2: "2. デバイスへのインストール",
-  guideSec3: "3. オフラインでの使用",
-  guideSec4: "4. 更新",
-  guideSec5: "5. アンインストール",
-  guideSec6: "6. トラブルシューティング",
-  guideSec7: "7. プライバシー",
-  readmeTitle: (n) => n,
+  guideSec1: "1. PWA とは？", guideSec2: "2. デバイスへのインストール", guideSec3: "3. オフラインでの使用",
+  guideSec4: "4. 更新", guideSec5: "5. アンインストール", guideSec6: "6. トラブルシューティング", guideSec7: "7. プライバシー",
   readmeIntro: "プログレッシブ ウェブ アプリ (PWA) — オフラインで動作し、スマートフォン、タブレット、PC にインストールできます。",
-  readmeFiles: "ファイル",
-  readmeTableHead: "| ファイル | 目的 |",
-  readmeTableSep: "|---|---|",
-  readmeInstall: "アプリとしてインストール",
-  readmeOffline: "オフラインでの使用",
-  readmePrivacy: "プライバシー",
+  readmeFiles: "ファイル", readmeTableHead: "| ファイル | 目的 |", readmeTableSep: "|---|---|",
+  readmeInstall: "アプリとしてインストール", readmeOffline: "オフラインでの使用", readmePrivacy: "プライバシー",
   fileGuideName: "user-guide"
 });
 CONTENT.fr = Object.assign({}, CONTENT.en, {
-  privacyH1: "Politique de confidentialité",
-  updated: "Dernière mise à jour :",
-  backToApp: "← Retour à l'application",
+  privacyH1: "Politique de confidentialité", updated: "Dernière mise à jour :", backToApp: "← Retour à l'application",
   guideH1: (n) => `📖 Guide d'utilisation — ${n}`,
-  guideSec1: "1. Qu'est-ce qu'une PWA ?",
-  guideSec2: "2. Installer sur votre appareil",
-  guideSec3: "3. Utilisation hors ligne",
-  guideSec4: "4. Mise à jour",
-  guideSec5: "5. Désinstaller",
-  guideSec6: "6. Dépannage",
-  guideSec7: "7. Confidentialité",
-  readmeTitle: (n) => n,
+  guideSec1: "1. Qu'est-ce qu'une PWA ?", guideSec2: "2. Installer sur votre appareil", guideSec3: "3. Utilisation hors ligne",
+  guideSec4: "4. Mise à jour", guideSec5: "5. Désinstaller", guideSec6: "6. Dépannage", guideSec7: "7. Confidentialité",
   readmeIntro: "Application web progressive (PWA) — fonctionne hors ligne et peut être installée sur téléphone, tablette ou ordinateur.",
-  readmeFiles: "Fichiers",
-  readmeTableHead: "| Fichier | Rôle |",
-  readmeTableSep: "|---|---|",
-  readmeInstall: "Installer en tant qu'application",
-  readmeOffline: "Utilisation hors ligne",
-  readmePrivacy: "Confidentialité",
+  readmeFiles: "Fichiers", readmeTableHead: "| Fichier | Rôle |", readmeTableSep: "|---|---|",
+  readmeInstall: "Installer en tant qu'application", readmeOffline: "Utilisation hors ligne", readmePrivacy: "Confidentialité",
   fileGuideName: "user-guide"
 });
 CONTENT.de = Object.assign({}, CONTENT.en, {
-  privacyH1: "Datenschutzerklärung",
-  updated: "Zuletzt aktualisiert:",
-  backToApp: "← Zurück zur App",
+  privacyH1: "Datenschutzerklärung", updated: "Zuletzt aktualisiert:", backToApp: "← Zurück zur App",
   guideH1: (n) => `📖 Benutzerhandbuch — ${n}`,
-  guideSec1: "1. Was ist eine PWA?",
-  guideSec2: "2. Auf deinem Gerät installieren",
-  guideSec3: "3. Offline-Nutzung",
-  guideSec4: "4. Aktualisierung",
-  guideSec5: "5. Deinstallieren",
-  guideSec6: "6. Fehlerbehebung",
-  guideSec7: "7. Datenschutz",
-  readmeTitle: (n) => n,
+  guideSec1: "1. Was ist eine PWA?", guideSec2: "2. Auf deinem Gerät installieren", guideSec3: "3. Offline-Nutzung",
+  guideSec4: "4. Aktualisierung", guideSec5: "5. Deinstallieren", guideSec6: "6. Fehlerbehebung", guideSec7: "7. Datenschutz",
   readmeIntro: "Progressive Web App (PWA) — funktioniert offline und kann auf Telefon, Tablet oder Computer installiert werden.",
-  readmeFiles: "Dateien",
-  readmeTableHead: "| Datei | Zweck |",
-  readmeTableSep: "|---|---|",
-  readmeInstall: "Als App installieren",
-  readmeOffline: "Offline-Nutzung",
-  readmePrivacy: "Datenschutz",
+  readmeFiles: "Dateien", readmeTableHead: "| Datei | Zweck |", readmeTableSep: "|---|---|",
+  readmeInstall: "Als App installieren", readmeOffline: "Offline-Nutzung", readmePrivacy: "Datenschutz",
   fileGuideName: "user-guide"
 });
 CONTENT.es = Object.assign({}, CONTENT.en, {
-  privacyH1: "Política de privacidad",
-  updated: "Última actualización:",
-  backToApp: "← Volver a la app",
+  privacyH1: "Política de privacidad", updated: "Última actualización:", backToApp: "← Volver a la app",
   guideH1: (n) => `📖 Guía del usuario — ${n}`,
-  guideSec1: "1. ¿Qué es una PWA?",
-  guideSec2: "2. Instalar en tu dispositivo",
-  guideSec3: "3. Uso sin conexión",
-  guideSec4: "4. Actualizar",
-  guideSec5: "5. Desinstalar",
-  guideSec6: "6. Solución de problemas",
-  guideSec7: "7. Privacidad",
-  readmeTitle: (n) => n,
+  guideSec1: "1. ¿Qué es una PWA?", guideSec2: "2. Instalar en tu dispositivo", guideSec3: "3. Uso sin conexión",
+  guideSec4: "4. Actualizar", guideSec5: "5. Desinstalar", guideSec6: "6. Solución de problemas", guideSec7: "7. Privacidad",
   readmeIntro: "Aplicación web progresiva (PWA) — funciona sin conexión y puede instalarse en teléfono, tableta u ordenador.",
-  readmeFiles: "Archivos",
-  readmeTableHead: "| Archivo | Propósito |",
-  readmeTableSep: "|---|---|",
-  readmeInstall: "Instalar como app",
-  readmeOffline: "Uso sin conexión",
-  readmePrivacy: "Privacidad",
+  readmeFiles: "Archivos", readmeTableHead: "| Archivo | Propósito |", readmeTableSep: "|---|---|",
+  readmeInstall: "Instalar como app", readmeOffline: "Uso sin conexión", readmePrivacy: "Privacidad",
   fileGuideName: "user-guide"
 });
 CONTENT.it = Object.assign({}, CONTENT.en, {
-  privacyH1: "Informativa sulla privacy",
-  updated: "Ultimo aggiornamento:",
-  backToApp: "← Torna all'app",
+  privacyH1: "Informativa sulla privacy", updated: "Ultimo aggiornamento:", backToApp: "← Torna all'app",
   guideH1: (n) => `📖 Guida utente — ${n}`,
-  guideSec1: "1. Cos'è una PWA?",
-  guideSec2: "2. Installazione sul tuo dispositivo",
-  guideSec3: "3. Uso offline",
-  guideSec4: "4. Aggiornamento",
-  guideSec5: "5. Disinstallazione",
-  guideSec6: "6. Risoluzione dei problemi",
-  guideSec7: "7. Privacy",
-  readmeTitle: (n) => n,
+  guideSec1: "1. Cos'è una PWA?", guideSec2: "2. Installazione sul tuo dispositivo", guideSec3: "3. Uso offline",
+  guideSec4: "4. Aggiornamento", guideSec5: "5. Disinstallazione", guideSec6: "6. Risoluzione dei problemi", guideSec7: "7. Privacy",
   readmeIntro: "Progressive Web App (PWA) — funziona offline e può essere installata su telefono, tablet o computer.",
-  readmeFiles: "File",
-  readmeTableHead: "| File | Scopo |",
-  readmeTableSep: "|---|---|",
-  readmeInstall: "Installa come app",
-  readmeOffline: "Uso offline",
-  readmePrivacy: "Privacy",
+  readmeFiles: "File", readmeTableHead: "| File | Scopo |", readmeTableSep: "|---|---|",
+  readmeInstall: "Installa come app", readmeOffline: "Uso offline", readmePrivacy: "Privacy",
   fileGuideName: "user-guide"
 });
 CONTENT.ar = Object.assign({}, CONTENT.en, {
-  privacyH1: "سياسة الخصوصية",
-  updated: "آخر تحديث:",
-  backToApp: "← رجوع إلى التطبيق",
+  privacyH1: "سياسة الخصوصية", updated: "آخر تحديث:", backToApp: "← رجوع إلى التطبيق",
   guideH1: (n) => `📖 دليل المستخدم — ${n}`,
-  guideSec1: "1. ما هو PWA؟",
-  guideSec2: "2. التثبيت على جهازك",
-  guideSec3: "3. الاستخدام دون اتصال",
-  guideSec4: "4. التحديث",
-  guideSec5: "5. إلغاء التثبيت",
-  guideSec6: "6. استكشاف الأخطاء",
-  guideSec7: "7. الخصوصية",
-  readmeTitle: (n) => n,
+  guideSec1: "1. ما هو PWA؟", guideSec2: "2. التثبيت على جهازك", guideSec3: "3. الاستخدام دون اتصال",
+  guideSec4: "4. التحديث", guideSec5: "5. إلغاء التثبيت", guideSec6: "6. استكشاف الأخطاء", guideSec7: "7. الخصوصية",
   readmeIntro: "تطبيق ويب تقدمي (PWA) — يعمل دون اتصال ويمكن تثبيته على الهاتف أو الجهاز اللوحي أو الكمبيوتر.",
-  readmeFiles: "الملفات",
-  readmeTableHead: "| الملف | الغرض |",
-  readmeTableSep: "|---|---|",
-  readmeInstall: "التثبيت كتطبيق",
-  readmeOffline: "الاستخدام دون اتصال",
-  readmePrivacy: "الخصوصية",
+  readmeFiles: "الملفات", readmeTableHead: "| الملف | الغرض |", readmeTableSep: "|---|---|",
+  readmeInstall: "التثبيت كتطبيق", readmeOffline: "الاستخدام دون اتصال", readmePrivacy: "الخصوصية",
   fileGuideName: "user-guide"
 });
 CONTENT.sv = Object.assign({}, CONTENT.en, {
-  privacyH1: "Integritetspolicy",
-  updated: "Senast uppdaterad:",
-  backToApp: "← Tillbaka till appen",
+  privacyH1: "Integritetspolicy", updated: "Senast uppdaterad:", backToApp: "← Tillbaka till appen",
   guideH1: (n) => `📖 Användarguide — ${n}`,
-  guideSec1: "1. Vad är en PWA?",
-  guideSec2: "2. Installera på din enhet",
-  guideSec3: "3. Användning offline",
-  guideSec4: "4. Uppdatering",
-  guideSec5: "5. Avinstallera",
-  guideSec6: "6. Felsökning",
-  guideSec7: "7. Integritet",
-  readmeTitle: (n) => n,
+  guideSec1: "1. Vad är en PWA?", guideSec2: "2. Installera på din enhet", guideSec3: "3. Användning offline",
+  guideSec4: "4. Uppdatering", guideSec5: "5. Avinstallera", guideSec6: "6. Felsökning", guideSec7: "7. Integritet",
   readmeIntro: "Progressiv webbapp (PWA) — fungerar offline och kan installeras på telefon, surfplatta eller dator.",
-  readmeFiles: "Filer",
-  readmeTableHead: "| Fil | Syfte |",
-  readmeTableSep: "|---|---|",
-  readmeInstall: "Installera som app",
-  readmeOffline: "Användning offline",
-  readmePrivacy: "Integritet",
+  readmeFiles: "Filer", readmeTableHead: "| Fil | Syfte |", readmeTableSep: "|---|---|",
+  readmeInstall: "Installera som app", readmeOffline: "Användning offline", readmePrivacy: "Integritet",
   fileGuideName: "user-guide"
 });
 CONTENT.no = Object.assign({}, CONTENT.en, {
-  privacyH1: "Personvernpolicy",
-  updated: "Sist oppdatert:",
-  backToApp: "← Tilbake til appen",
+  privacyH1: "Personvernpolicy", updated: "Sist oppdatert:", backToApp: "← Tilbake til appen",
   guideH1: (n) => `📖 Brukerveiledning — ${n}`,
-  guideSec1: "1. Hva er en PWA?",
-  guideSec2: "2. Installer på enheten din",
-  guideSec3: "3. Bruk offline",
-  guideSec4: "4. Oppdatering",
-  guideSec5: "5. Avinstaller",
-  guideSec6: "6. Feilsøking",
-  guideSec7: "7. Personvern",
-  readmeTitle: (n) => n,
+  guideSec1: "1. Hva er en PWA?", guideSec2: "2. Installer på enheten din", guideSec3: "3. Bruk offline",
+  guideSec4: "4. Oppdatering", guideSec5: "5. Avinstaller", guideSec6: "6. Feilsøking", guideSec7: "7. Personvern",
   readmeIntro: "Progressiv nettapp (PWA) — fungerer offline og kan installeres på telefon, nettbrett eller datamaskin.",
-  readmeFiles: "Filer",
-  readmeTableHead: "| Fil | Formål |",
-  readmeTableSep: "|---|---|",
-  readmeInstall: "Installer som app",
-  readmeOffline: "Bruk offline",
-  readmePrivacy: "Personvern",
+  readmeFiles: "Filer", readmeTableHead: "| Fil | Formål |", readmeTableSep: "|---|---|",
+  readmeInstall: "Installer som app", readmeOffline: "Bruk offline", readmePrivacy: "Personvern",
   fileGuideName: "user-guide"
 });
 
@@ -1234,17 +1130,12 @@ CONTENT.no = Object.assign({}, CONTENT.en, {
       if (t[key]) el.innerHTML = t[key];
     });
 
-    // Checklist en banner-onderdelen opnieuw opbouwen
     renderChecklist();
-
-    // Document-titel
     document.title = t.title.replace(/^[^A-Za-z]+/, '').trim() || "PWA Generator";
   }
 
   function renderChecklist() {
     const box = $('checklistBox');
-    const isEn = currentLang === 'en' || !I18N[currentLang] || currentLang !== 'nl';
-    // Voor alle talen behalve NL gebruiken we een Engelse checklist als basis
     if (currentLang === 'nl') {
       box.innerHTML = `
         <strong>🚀 Wat nu?</strong>
@@ -1284,7 +1175,6 @@ CONTENT.no = Object.assign({}, CONTENT.en, {
     }
   }
 
-  /* ---------- File helpers ---------- */
   function readText(file) {
     return new Promise((res, rej) => {
       const r = new FileReader();
@@ -1400,13 +1290,10 @@ CONTENT.no = Object.assign({}, CONTENT.en, {
       const dirAttr = rtl ? ' dir="rtl"' : '';
       out = `<!DOCTYPE html>\n<html lang="${currentLang}"${dirAttr}>\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">${headInject}</head>\n<body>\n${out}\n</body>\n</html>`;
     }
-
-    // Zet lang-attribuut goed
     out = out.replace(/<html([^>]*)>/i, (m, attrs) => {
       let a = attrs.replace(/\slang=["'][^"']*["']/i, '');
       return `<html${a} lang="${currentLang}"${rtl ? ' dir="rtl"' : ''}>`;
     });
-
     if (!alreadyHasSW) {
       if (/<\/body>/i.test(out)) {
         out = out.replace(/<\/body>/i, scriptInject + '</body>');
@@ -1535,32 +1422,16 @@ self.addEventListener('fetch', event => {
 <body>
 <h1>${c.privacyH1}</h1>
 <p class="updated">${c.updated} ${date}</p>
-
 <p>${c.applies(name)}</p>
-
 <h2>${c.sec1}</h2>
 <p>${c.sec1p(name)}</p>
-<ul>
-  <li>${c.sec1li1}</li>
-  <li>${c.sec1li2}</li>
-</ul>
+<ul><li>${c.sec1li1}</li><li>${c.sec1li2}</li></ul>
 <p>${c.sec1p2}</p>
-
-<h2>${c.sec2}</h2>
-<p>${c.sec2p}</p>
-
-<h2>${c.sec3}</h2>
-<p>${c.sec3p}</p>
-
-<h2>${c.sec4}</h2>
-<p>${c.sec4p}</p>
-
-<h2>${c.sec5}</h2>
-<p>${c.sec5p(esc(email))}</p>
-
-<h2>${c.sec6}</h2>
-<p>${c.sec6p}</p>
-
+<h2>${c.sec2}</h2><p>${c.sec2p}</p>
+<h2>${c.sec3}</h2><p>${c.sec3p}</p>
+<h2>${c.sec4}</h2><p>${c.sec4p}</p>
+<h2>${c.sec5}</h2><p>${c.sec5p(esc(email))}</p>
+<h2>${c.sec6}</h2><p>${c.sec6p}</p>
 <a class="back" href="./index.html">${c.backToApp}</a>
 </body>
 </html>
@@ -1596,82 +1467,33 @@ self.addEventListener('fetch', event => {
 <body>
 <h1>${c.guideH1(name)}</h1>
 <p>${c.guideIntro(shortName)}</p>
-
 <h2>${c.guideSec1}</h2>
 <p>${c.guideSec1p}</p>
 <ul>
-  <li>${c.guideSec1li1}</li>
-  <li>${c.guideSec1li2}</li>
-  <li>${c.guideSec1li3}</li>
-  <li>${c.guideSec1li4}</li>
+  <li>${c.guideSec1li1}</li><li>${c.guideSec1li2}</li>
+  <li>${c.guideSec1li3}</li><li>${c.guideSec1li4}</li>
 </ul>
-
 <h2>${c.guideSec2}</h2>
 <h3>${c.guideA}</h3>
-<ol>
-  <li>${c.guideA1}</li>
-  <li>${c.guideA2}</li>
-  <li>${c.guideA3}</li>
-  <li>${c.guideA4}</li>
-</ol>
-
+<ol><li>${c.guideA1}</li><li>${c.guideA2}</li><li>${c.guideA3}</li><li>${c.guideA4}</li></ol>
 <h3>${c.guideB}</h3>
-<ol>
-  <li>${c.guideB1}</li>
-  <li>${c.guideB2}</li>
-  <li>${c.guideB3}</li>
-  <li>${c.guideB4}</li>
-</ol>
-
+<ol><li>${c.guideB1}</li><li>${c.guideB2}</li><li>${c.guideB3}</li><li>${c.guideB4}</li></ol>
 <h3>${c.guideC}</h3>
-<ol>
-  <li>${c.guideC1}</li>
-  <li>${c.guideC2}</li>
-  <li>${c.guideC3}</li>
-  <li>${c.guideC4}</li>
-</ol>
-
-<h2>${c.guideSec3}</h2>
-<p>${c.guideSec3p}</p>
-<div class="tip">${c.guideSec3tip}</div>
-
-<h2>${c.guideSec4}</h2>
-<p>${c.guideSec4p}</p>
-<ol>
-  <li>${c.guideSec4li1}</li>
-  <li>${c.guideSec4li2}</li>
-  <li>${c.guideSec4li3}</li>
-</ol>
+<ol><li>${c.guideC1}</li><li>${c.guideC2}</li><li>${c.guideC3}</li><li>${c.guideC4}</li></ol>
+<h2>${c.guideSec3}</h2><p>${c.guideSec3p}</p><div class="tip">${c.guideSec3tip}</div>
+<h2>${c.guideSec4}</h2><p>${c.guideSec4p}</p>
+<ol><li>${c.guideSec4li1}</li><li>${c.guideSec4li2}</li><li>${c.guideSec4li3}</li></ol>
 <p>${c.guideSec4p2}</p>
-
 <h2>${c.guideSec5}</h2>
-<ul>
-  <li>${c.guideSec5li1}</li>
-  <li>${c.guideSec5li2}</li>
-  <li>${c.guideSec5li3}</li>
-</ul>
-
+<ul><li>${c.guideSec5li1}</li><li>${c.guideSec5li2}</li><li>${c.guideSec5li3}</li></ul>
 <h2>${c.guideSec6}</h2>
 <h3>${c.guideSec6h1}</h3>
-<ul>
-  <li>${c.guideSec6h1li1}</li>
-  <li>${c.guideSec6h1li2}</li>
-  <li>${c.guideSec6h1li3}</li>
-</ul>
+<ul><li>${c.guideSec6h1li1}</li><li>${c.guideSec6h1li2}</li><li>${c.guideSec6h1li3}</li></ul>
 <h3>${c.guideSec6h2}</h3>
-<ul>
-  <li>${c.guideSec6h2li1}</li>
-  <li>${c.guideSec6h2li2}</li>
-</ul>
+<ul><li>${c.guideSec6h2li1}</li><li>${c.guideSec6h2li2}</li></ul>
 <h3>${c.guideSec6h3}</h3>
-<ul>
-  <li>${c.guideSec6h3li1}</li>
-  <li>${c.guideSec6h3li2}</li>
-</ul>
-
-<h2>${c.guideSec7}</h2>
-<p>${c.guideSec7p}</p>
-
+<ul><li>${c.guideSec6h3li1}</li><li>${c.guideSec6h3li2}</li></ul>
+<h2>${c.guideSec7}</h2><p>${c.guideSec7p}</p>
 <a class="back" href="./index.html">${c.backToApp}</a>
 </body>
 </html>
@@ -1929,9 +1751,19 @@ ${c.readmePrivacyP}
   $('testBtn').addEventListener('click', testUrl);
   $('uiLang').addEventListener('change', (e) => applyLang(e.target.value));
 
-  // Init
   applyLang('nl');
 })();
+</script>
+
+<script>
+  // Service worker registratie — VÓÓR </body>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./service-worker.js')
+        .then(reg => console.log('SW geregistreerd:', reg.scope))
+        .catch(err => console.error('SW fout:', err));
+    });
+  }
 </script>
 </body>
 </html>
